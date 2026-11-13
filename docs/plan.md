@@ -138,11 +138,11 @@ XGBoost in a slim Docker image was a listed risk. It is resolved: the build need
 Commands for each check are in `docs/verification.md`.
 
 **Data and notebook**
-- [ ] Confirm in the features document which `Result` value means phishing, and that it matches the notebook (-1 = phishing).
+- [x] Confirm which `Result` value means phishing and that it matches the notebook (-1 = phishing, 1 = legitimate). Checked against the UCI dataset description (6,157 legitimate and 4,898 phishing rows, matching the data) and the data itself (`sslfinal_state = 1` is 11% phishing, `-1` is 86%).
 - [x] Restart the notebook and run all cells; it finishes with no errors or warnings.
 
 **Training and environment**
-- [ ] Delete `.venv`, run `uv sync`, and confirm it installs everything from scratch.
+- [x] Delete `.venv`, run `uv sync`, and confirm it installs everything from scratch.
 - [x] Run `train.py` and confirm the numbers match the notebook.
 
 **Service**
