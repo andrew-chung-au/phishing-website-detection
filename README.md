@@ -143,7 +143,7 @@ curl -s -X POST localhost:9696/predict \
   -d @examples/phishing.json
 ```
 
-To try it in a browser, open <http://localhost:9696/docs>, expand `POST /predict`, click **Try it out** and **Execute**.
+To try it in a browser, open <http://localhost:9696/> and click one of the two example buttons. For your own input, open <http://localhost:9696/docs>, expand `POST /predict`, click **Try it out** and **Execute**.
 
 Invalid input is rejected with HTTP 422. For example, `redirect` only accepts 0 or 1:
 
@@ -231,7 +231,7 @@ Sensitivity to duplicates (XGBoost test ROC AUC): 0.997 with a random split, 0.9
 |---|---|
 | `POST /predict` | Takes the 30 coded values, returns `phishing_probability` and `phishing` (probability at or above 0.5) |
 | `GET /health` | Returns `{"status": "ok"}` |
-| `GET /` | Redirects to `/docs` |
+| `GET /` | Landing page with two example buttons (the API docs are at `/docs`) |
 
 Pydantic rejects missing fields, values outside each feature's allowed codes, and unknown fields with HTTP 422.
 
@@ -248,12 +248,6 @@ The service deploys to [Render](https://render.com/) as a Docker web service, de
 - **Evidence (URL and screenshot):** [`docs/deployment.md#evidence`](docs/deployment.md#evidence)
 
 Quick version: in the Render dashboard choose **New > Blueprint**, select this repository and apply. Then run `uv run python test_predict.py https://<service-url>`.
-
-## Evidence
-
-Not yet recorded. Add the URL, the date tested, and a screenshot of a working prediction here once the service is deployed.
-
-<!-- ![Deployed prediction](images/deployed-prediction.png) -->
 
 ## Limitations
 

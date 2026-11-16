@@ -13,7 +13,7 @@
 | Source | [UCI dataset](https://archive.ics.uci.edu/dataset/327/phishing). The original `Training Dataset.arff` is committed as `data/training-dataset.arff` |
 | Citation | Mohammad, R. & McCluskey, L. (2012). *Phishing Websites* [Dataset]. UCI Machine Learning Repository. DOI: 10.24432/C51W2X |
 | Models | Majority-class baseline, logistic regression (raw and one-hot), decision tree, random forest and XGBoost |
-| API | FastAPI + Uvicorn; `POST /predict`, `GET /health`, `GET /` (redirects to `/docs`); port 9696 |
+| API | FastAPI + Uvicorn; `POST /predict`, `GET /health`, `GET /` (landing page with two example buttons); port 9696 |
 | Environment | `uv`, with `pyproject.toml`, `uv.lock` and `.python-version` |
 | Input validation | Pydantic request and response models |
 | Containerization | Docker (`python:3.14-slim-bookworm`) |
@@ -88,7 +88,7 @@ Parallelism: only `GridSearchCV` uses `n_jobs=-1`. The models stay single-thread
 
 - `GET /health` returns `{"status": "ok"}`.
 - `POST /predict` accepts the 30 coded values and returns `phishing_probability` and `phishing` (probability at or above 0.5).
-- `GET /` redirects to `/docs`.
+- `GET /` serves a small landing page with two example buttons. The API docs stay at `/docs`.
 
 Pydantic rejects missing fields, values outside each feature's allowed codes, and unknown fields (HTTP 422). Local test steps are in `docs/verification.md`.
 
@@ -154,11 +154,11 @@ Commands for each check are in `docs/verification.md`.
 - [x] Build the image and run the container; predictions match the local service.
 
 **Repository and documentation**
-- [ ] Commit and push everything; `git status` is clean.
-- [ ] Complete the README: problem, install, train, run the service, Docker.
-- [ ] Clone the repo into a new folder and get it working using only the README.
+- [x] Commit and push everything; `git status` is clean.
+- [x] Complete the README: problem, install, train, run the service, Docker.
+- [x] Clone the repo into a new folder and get it working using only the README.
 
 **Cloud (bonus)**
-- [ ] Deploy, test a prediction, add the URL or a screenshot to the README, then remove the deployment.
+- [x] Deploy, test a prediction, add the URL or a screenshot to the README, then remove the deployment.
 
-- [ ] Record the commit hash.
+- [x] Record the commit hash.

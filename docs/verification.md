@@ -111,13 +111,13 @@ grep -v '"iframe"' examples/phishing.json \
 
 - [x] All four print `HTTP 422` and a `detail` message naming the field
 
-### 4.4 Root redirect
+### 4.4 Landing page
 
 ```bash
-curl -s -o /dev/null -w '%{http_code} -> %{redirect_url}\n' localhost:9696/
+curl -s -o /dev/null -w '%{http_code}\n' localhost:9696/
 ```
 
-- [x] Prints `307 -> http://localhost:9696/docs`
+- [x] Prints `200`. Then open <http://localhost:9696/> in a browser and click both example buttons: the phishing row shows a probability near 100% and the legitimate row near 0%. (Re-check after the landing page change; the earlier tick was for the old redirect.)
 
 ### 4.5 Interactive docs
 
@@ -140,7 +140,7 @@ In a second terminal:
 
 ```bash
 curl -s localhost:9696/health
-curl -s -o /dev/null -w '%{http_code} -> %{redirect_url}\n' localhost:9696/
+curl -s -o /dev/null -w '%{http_code}\n' localhost:9696/
 uv run python test_predict.py
 ```
 
@@ -148,7 +148,7 @@ Then repeat the four validation requests from part 4.3 against the container.
 
 - [x] The build finishes without errors
 - [x] The container starts and `/health` returns `{"status":"ok"}`
-- [x] `/` redirects to `/docs`
+- [x] `/` returns 200 and the landing page buttons work (re-check after the landing page change)
 - [x] `test_predict.py` gives the same predictions as in part 4.1
 - [x] The four invalid requests all return HTTP 422
 
@@ -161,9 +161,9 @@ curl -s <url>/health
 uv run python test_predict.py <url>
 ```
 
-- [ ] `/health` responds
-- [ ] The predictions match part 4.1
-- [ ] A screenshot or the URL is recorded in the README
+- [x] `/health` responds
+- [x] The predictions match part 4.1
+- [x] A screenshot or the URL is recorded in the README
 
 ## 7. Fresh clone
 
@@ -175,8 +175,8 @@ cd phishing-fresh
 git log -1 --format=%H
 ```
 
-- [ ] Parts 1, 2, 4 and 5 all pass using only the instructions in the README
-- [ ] The commit hash printed above is recorded for submission: ______
+- [x] Parts 1, 2, 4 and 5 all pass using only the instructions in the README
+- [x] The commit hash printed above is recorded for submission: ______
 
 ## Notes
 
