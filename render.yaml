@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: phishing-detection
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # The Dockerfile serves on 9696; tell Render which port to route to
+      - key: PORT
+        value: "9696"
